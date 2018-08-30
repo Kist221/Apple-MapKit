@@ -157,11 +157,12 @@
 
         // schools annotations
         let annotations = schools.map(function (landmark) {
-            let annotation = new mapkit.MarkerAnnotation(landmark.coordinate, {
-                callout: landmarkAnnotationCallout,
-                // marker icon details
-                color: "red"
-            });
+            // make marker
+            let annotation = new mapkit.MarkerAnnotation(landmark.coordinate);
+            // marker attr
+            annotation.callout = landmarkAnnotationCallout;
+            annotation.color = "red";
+            annotation.glyphText = " 🎓";
             annotation.landmark = landmark;
             return annotation;
         });
