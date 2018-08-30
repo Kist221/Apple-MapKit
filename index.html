@@ -8,8 +8,9 @@
 
     <style>
         #map {
-            height: 400px;
-            width: 400px;
+            height: 600px;
+            width: 80%;
+            margin: 0 auto;
         }
 
         a:link,
@@ -94,8 +95,9 @@
     <script>
         mapkit.init({
             authorizationCallback: function (done) {
-                var data = "eyJraWQiOiI4VDM4NDhCOUxEIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJMVFFXVDg4NzNZIiwiaWF0IjoiMTUzNTU4NTUzNS45MTkifQ.j8WW2kWCBY2oW8mmtdnJoF8j72mCPBWJFYSuklpox80";
-                done(data);
+                done(
+                    'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhUMzg0OEI5TEQifQ.eyJpc3MiOiJMVFFXVDg4NzNZIiwiaWF0IjoxNTM1NjQ1NDA4LCJleHAiOjI1MjgzMjM4Mzd9.lZLq9Dt7pCCtdSKttLRYZqZLgPW2MtirmCvDxr6mUzJN_aYh_lHQrdmLKWLofRWdjk3UnT71l_fsxzqYMSu4PQ'
+                );
             }
         });
 
@@ -140,7 +142,8 @@
         var annotations = sanFranciscoLandmarks.map(function (landmark) {
             var annotation = new mapkit.MarkerAnnotation(landmark.coordinate, {
                 callout: landmarkAnnotationCallout,
-                color: "#c969e0"
+                // color of markers
+                color: "blue"
             });
             annotation.landmark = landmark;
             return annotation;
@@ -167,7 +170,7 @@
             link.className = "homepage";
             var a = link.appendChild(document.createElement("a"));
             a.href = annotation.landmark.url;
-            a.textContent = "website";
+            a.textContent = "Website";
 
             return div;
         }
