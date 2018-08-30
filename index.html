@@ -102,7 +102,7 @@
         });
 
         // schools data
-        var schools = [{
+        let schools = [{
                 coordinate: new mapkit.Coordinate(32.1937708, -110.8575854),
                 title: "Canyon Rose Academy",
                 phone: "520.797.4884",
@@ -135,8 +135,8 @@
         ];
 
         // Landmark annotation callout delegate
-        var CALLOUT_OFFSET = new DOMPoint(-148, -78);
-        var landmarkAnnotationCallout = {
+        let CALLOUT_OFFSET = new DOMPoint(-148, -78);
+        let landmarkAnnotationCallout = {
             calloutElementForAnnotation: function (annotation) {
                 return calloutForLandmarkAnnotation(annotation);
             },
@@ -151,8 +151,8 @@
         };
 
         // schools annotations
-        var annotations = schools.map(function (landmark) {
-            var annotation = new mapkit.MarkerAnnotation(landmark.coordinate, {
+        let annotations = schools.map(function (landmark) {
+            let annotation = new mapkit.MarkerAnnotation(landmark.coordinate, {
                 callout: landmarkAnnotationCallout,
                 // color of markers
                 color: "red"
@@ -161,7 +161,7 @@
             return annotation;
         });
 
-        var map = new mapkit.Map("map");
+        let map = new mapkit.Map("map");
 
         map.showItems(annotations);
 
@@ -176,21 +176,21 @@
 
         // Landmark annotation custom callout
         function calloutForLandmarkAnnotation(annotation) {
-            var div = document.createElement("div");
+            let div = document.createElement("div");
             div.className = "landmark";
 
-            var title = div.appendChild(document.createElement("h1"));
+            let title = div.appendChild(document.createElement("h1"));
             title.textContent = annotation.landmark.title;
 
-            var section = div.appendChild(document.createElement("section"));
+            let section = div.appendChild(document.createElement("section"));
 
-            var phone = section.appendChild(document.createElement("p"));
+            let phone = section.appendChild(document.createElement("p"));
             phone.className = "phone";
             phone.textContent = annotation.landmark.phone;
 
-            var link = section.appendChild(document.createElement("p"));
+            let link = section.appendChild(document.createElement("p"));
             link.className = "homepage";
-            var a = link.appendChild(document.createElement("a"));
+            let a = link.appendChild(document.createElement("a"));
             a.href = annotation.landmark.url;
             a.textContent = "Website";
 
