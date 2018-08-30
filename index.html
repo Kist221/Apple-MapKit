@@ -101,24 +101,36 @@
             }
         });
 
-        // Landmarks data
-        var sanFranciscoLandmarks = [{
-                coordinate: new mapkit.Coordinate(37.7951315, -122.402986),
-                title: "Transamerica Pyramid",
-                phone: "+1-415-983-5420",
-                url: "http://www.transamericapyramidcenter.com/"
+        // schools data
+        var schools = [{
+                coordinate: new mapkit.Coordinate(32.1937708, -110.8575854),
+                title: "Canyon Rose Academy",
+                phone: "520.797.4884",
+                url: "https://www.go2rose.com/"
             },
             {
-                coordinate: new mapkit.Coordinate(37.7954201, -122.39352),
-                title: "Ferry Building",
-                phone: "+1 (415) 983-8030",
-                url: "http://www.ferrybuildingmarketplace.com"
+                coordinate: new mapkit.Coordinate(32.25988731530194, -110.80017898366019),
+                title: "Canyon Rose Academy East",
+                phone: "520.797.4884",
+                url: "https://www.go2rose.com/"
             },
             {
-                coordinate: new mapkit.Coordinate(37.8083396, -122.415727),
-                title: "Fisherman's Wharf",
-                phone: "+1 (415) 673-3530",
-                url: "http://visitfishermanswharf.com"
+                coordinate: new mapkit.Coordinate(32.265644073486, -110.976570129395),
+                title: "Desert Rose Academy",
+                phone: "520.797.4884",
+                url: "https://www.go2rose.com/"
+            },
+            {
+                coordinate: new mapkit.Coordinate(32.265644073486, -110.976570129395),
+                title: "Mountain Rose Academy",
+                phone: "520.797.4884",
+                url: "https://www.go2rose.com/"
+            },
+            {
+                coordinate: new mapkit.Coordinate(32.161285400391, -111.002098083496),
+                title: "Pima Rose Academy",
+                phone: "520.797.4884",
+                url: "https://www.go2rose.com/"
             }
         ];
 
@@ -138,19 +150,32 @@
             }
         };
 
-        // Landmarks annotations
-        var annotations = sanFranciscoLandmarks.map(function (landmark) {
+        // schools annotations
+        var annotations = schools.map(function (landmark) {
             var annotation = new mapkit.MarkerAnnotation(landmark.coordinate, {
                 callout: landmarkAnnotationCallout,
                 // color of markers
-                color: "blue"
+                color: "red"
             });
             annotation.landmark = landmark;
             return annotation;
         });
 
         var map = new mapkit.Map("map");
+
         map.showItems(annotations);
+
+        let rose = new mapkit.Geocoder({
+            getsUserLocation: true
+        });;
+
+        rose.lookup("Rose Academy", function (data, err) {
+            console.log(data, err);
+        });
+
+        // rose.lookup();
+
+        // console.log(rose);
 
         // Landmark annotation custom callout
         function calloutForLandmarkAnnotation(annotation) {
