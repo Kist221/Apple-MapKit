@@ -15,7 +15,7 @@
 
         a:link,
         a:visited {
-            color: #2aaef5;
+            color: red;
             outline: none;
             text-decoration: none;
         }
@@ -34,7 +34,7 @@
         .landmark h1 {
             margin-top: 0;
             padding: 5px 15px;
-            background: #2aaef5;
+            background: red;
             color: rgba(255, 255, 255, 0.9);
             font-size: 16px;
             font-weight: 300;
@@ -57,7 +57,7 @@
             width: 0;
             height: 0;
             margin-bottom: -13px;
-            border-right: 13px solid #2aaef5;
+            border-right: 13px solid red;
             border-top: 13px solid rgba(0, 0, 0, 0);
             border-bottom: 13px solid rgba(0, 0, 0, 0);
         }
@@ -121,7 +121,7 @@
                 url: "https://www.go2rose.com/"
             },
             {
-                coordinate: new mapkit.Coordinate(32.265644073486, -110.976570129395),
+                coordinate: new mapkit.Coordinate(32.324493408203, -111.043563842773),
                 title: "Mountain Rose Academy",
                 phone: "520.797.4884",
                 url: "https://www.go2rose.com/"
@@ -169,13 +169,10 @@
             getsUserLocation: true
         });;
 
-        rose.lookup("Rose Academy", function (data, err) {
+        // lookup location and return place object
+        rose.lookup("CS Design Studios", function (data, err) {
             console.log(data, err);
         });
-
-        // rose.lookup();
-
-        // console.log(rose);
 
         // Landmark annotation custom callout
         function calloutForLandmarkAnnotation(annotation) {
