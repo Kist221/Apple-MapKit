@@ -101,7 +101,7 @@
             }
         });
 
-        // schools data
+        // location data
         let schools = [{
                 coordinate: new mapkit.Coordinate(32.1937708, -110.8575854),
                 title: "Canyon Rose Academy",
@@ -159,25 +159,17 @@
         let annotations = schools.map(function (landmark) {
             let annotation = new mapkit.MarkerAnnotation(landmark.coordinate, {
                 callout: landmarkAnnotationCallout,
-                // color of markers
+                // marker icon details
                 color: "red"
             });
             annotation.landmark = landmark;
             return annotation;
         });
 
+        // renders map
         let map = new mapkit.Map("map");
 
         map.showItems(annotations);
-
-        // let rose = new mapkit.Geocoder({
-        //     // getsUserLocation: true
-        // });;
-
-        // // lookup location and return place object
-        // rose.lookup("CS Design Studios", function (data, err) {
-        //     console.log(data, err);
-        // });
 
         // Landmark annotation custom callout
         function calloutForLandmarkAnnotation(annotation) {
@@ -205,6 +197,17 @@
 
             return div;
         }
+
+        // CODE TO SEARCH FOR LOCATIONS
+        // let rose = new mapkit.Geocoder({
+        //     // getsUserLocation: true
+        // });;
+
+        // // lookup location and return place object
+        // rose.lookup("CS Design Studios", function (data, err) {
+        //     console.log(data, err);
+        // });
+
     </script>
 </body>
 
