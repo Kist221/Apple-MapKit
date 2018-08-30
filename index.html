@@ -94,12 +94,8 @@
     <script>
         mapkit.init({
             authorizationCallback: function (done) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", "/services/jwt");
-                xhr.addEventListener("load", function () {
-                    done(this.responseText);
-                });
-                xhr.send();
+                var data = "eyJraWQiOiI4VDM4NDhCOUxEIiwiYWxnIjoiSFMyNTYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJMVFFXVDg4NzNZIiwiaWF0IjoiMTUzNTU4NTUzNS45MTkifQ.j8WW2kWCBY2oW8mmtdnJoF8j72mCPBWJFYSuklpox80";
+                done(data);
             }
         });
 
