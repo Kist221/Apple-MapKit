@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <script src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
+    <script defer src="https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js"></script>
 
     <style>
         #map {
@@ -92,123 +92,126 @@
 <body>
     <div id="map"></div>
 
-    <script>
-        mapkit.init({
-            authorizationCallback: function (done) {
-                done(
-                    'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhUMzg0OEI5TEQifQ.eyJpc3MiOiJMVFFXVDg4NzNZIiwiaWF0IjoxNTM1NjQ1NDA4LCJleHAiOjI1MjgzMjM4Mzd9.lZLq9Dt7pCCtdSKttLRYZqZLgPW2MtirmCvDxr6mUzJN_aYh_lHQrdmLKWLofRWdjk3UnT71l_fsxzqYMSu4PQ'
-                );
+    <script defer>
+        jQuery(document).ready(function () {
+            mapkit.init({
+                authorizationCallback: function (done) {
+                    done(
+                        'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjhUMzg0OEI5TEQifQ.eyJpc3MiOiJMVFFXVDg4NzNZIiwiaWF0IjoxNTM1NjQ1NDA4LCJleHAiOjI1MjgzMjM4Mzd9.lZLq9Dt7pCCtdSKttLRYZqZLgPW2MtirmCvDxr6mUzJN_aYh_lHQrdmLKWLofRWdjk3UnT71l_fsxzqYMSu4PQ'
+                    );
+                }
+            });
+
+            // location data
+            let schools = [{
+                    coordinate: new mapkit.Coordinate(32.1937708, -110.8575854),
+                    title: "Canyon Rose Academy",
+                    phone: "520.797.4884 OPT 4",
+                    hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
+                    url: "https://www.go2rose.com/"
+                },
+                {
+                    coordinate: new mapkit.Coordinate(32.25988731530194, -110.80017898366019),
+                    title: "Canyon Rose Academy East",
+                    phone: "520.797.4884 OPT 7",
+                    hours: ["Mon-Thu: 7am-8pm", "Fri: 8am-4:30pm"],
+                    url: "https://www.go2rose.com/"
+                },
+                {
+                    coordinate: new mapkit.Coordinate(32.265644073486, -110.976570129395),
+                    title: "Desert Rose Academy",
+                    phone: "520.797.4884 OPT 3",
+                    hours: ["Mon-Thu: 7am-8pm", "Fri: 8am-4:30pm"],
+                    url: "https://www.go2rose.com/"
+                },
+                {
+                    coordinate: new mapkit.Coordinate(32.324493408203, -111.043563842773),
+                    title: "Mountain Rose Academy",
+                    phone: "520.797.4884 OPT 2",
+                    hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
+                    url: "https://www.go2rose.com/"
+                },
+                {
+                    coordinate: new mapkit.Coordinate(32.161285400391, -111.002098083496),
+                    title: "Pima Rose Academy",
+                    phone: "520.797.4884 OPT 5",
+                    hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
+                    url: "https://www.go2rose.com/"
+                }
+            ];
+
+            // Landmark annotation callout delegate
+            let CALLOUT_OFFSET = new DOMPoint(-148, -78);
+            let landmarkAnnotationCallout = {
+                calloutElementForAnnotation: function (annotation) {
+                    return calloutForLandmarkAnnotation(annotation);
+                },
+
+                calloutAnchorOffsetForAnnotation: function (annotation, element) {
+                    return CALLOUT_OFFSET;
+                },
+
+                calloutAppearanceAnimationForAnnotation: function (annotation) {
+                    return "scale-and-fadein .4s 0 1 normal cubic-bezier(0.4, 0, 0, 1.5)";
+                }
+            };
+
+            // schools annotations
+            let annotations = schools.map(function (landmark) {
+                // make marker
+                let annotation = new mapkit.MarkerAnnotation(landmark.coordinate);
+                // marker attr
+                annotation.callout = landmarkAnnotationCallout;
+                annotation.color = "red";
+                annotation.glyphText = " 🎓";
+                annotation.landmark = landmark;
+                return annotation;
+            });
+
+            // renders map
+            let map = new mapkit.Map("map");
+
+            map.showItems(annotations);
+
+            // Landmark annotation custom callout
+            function calloutForLandmarkAnnotation(annotation) {
+                let div = document.createElement("div");
+                div.className = "landmark";
+
+                let title = div.appendChild(document.createElement("h1"));
+                title.textContent = annotation.landmark.title;
+
+                let section = div.appendChild(document.createElement("section"));
+
+                let phone = section.appendChild(document.createElement("p"));
+                phone.className = "phone";
+                phone.innerHTML = "<strong>Phone:</strong><br />" + annotation.landmark.phone;
+
+                let hours = section.appendChild(document.createElement("p"));
+                hours.className = "hours";
+                hours.innerHTML = "<strong>Hours:</strong><br />" + annotation.landmark.hours[0] + "<br />" +
+                    annotation.landmark.hours[1];
+
+                // let link = section.appendChild(document.createElement("p"));
+                // link.className = "homepage";
+                // let a = link.appendChild(document.createElement("a"));
+                // a.href = annotation.landmark.url;
+                // a.textContent = "Website";
+
+                return div;
             }
+
+            // CODE TO SEARCH FOR LOCATIONS
+            // let rose = new mapkit.Geocoder({
+            //     // getsUserLocation: true
+            // });;
+
+            // // lookup location and return place object
+            // rose.lookup("CS Design Studios", function (data, err) {
+            //     console.log(data, err);
+            // });
+
         });
-
-        // location data
-        let schools = [{
-                coordinate: new mapkit.Coordinate(32.1937708, -110.8575854),
-                title: "Canyon Rose Academy",
-                phone: "520.797.4884 OPT 4",
-                hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
-            },
-            {
-                coordinate: new mapkit.Coordinate(32.25988731530194, -110.80017898366019),
-                title: "Canyon Rose Academy East",
-                phone: "520.797.4884 OPT 7",
-                hours: ["Mon-Thu: 7am-8pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
-            },
-            {
-                coordinate: new mapkit.Coordinate(32.265644073486, -110.976570129395),
-                title: "Desert Rose Academy",
-                phone: "520.797.4884 OPT 3",
-                hours: ["Mon-Thu: 7am-8pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
-            },
-            {
-                coordinate: new mapkit.Coordinate(32.324493408203, -111.043563842773),
-                title: "Mountain Rose Academy",
-                phone: "520.797.4884 OPT 2",
-                hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
-            },
-            {
-                coordinate: new mapkit.Coordinate(32.161285400391, -111.002098083496),
-                title: "Pima Rose Academy",
-                phone: "520.797.4884 OPT 5",
-                hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
-            }
-        ];
-
-        // Landmark annotation callout delegate
-        let CALLOUT_OFFSET = new DOMPoint(-148, -78);
-        let landmarkAnnotationCallout = {
-            calloutElementForAnnotation: function (annotation) {
-                return calloutForLandmarkAnnotation(annotation);
-            },
-
-            calloutAnchorOffsetForAnnotation: function (annotation, element) {
-                return CALLOUT_OFFSET;
-            },
-
-            calloutAppearanceAnimationForAnnotation: function (annotation) {
-                return "scale-and-fadein .4s 0 1 normal cubic-bezier(0.4, 0, 0, 1.5)";
-            }
-        };
-
-        // schools annotations
-        let annotations = schools.map(function (landmark) {
-            // make marker
-            let annotation = new mapkit.MarkerAnnotation(landmark.coordinate);
-            // marker attr
-            annotation.callout = landmarkAnnotationCallout;
-            annotation.color = "red";
-            annotation.glyphText = " 🎓";
-            annotation.landmark = landmark;
-            return annotation;
-        });
-
-        // renders map
-        let map = new mapkit.Map("map");
-
-        map.showItems(annotations);
-
-        // Landmark annotation custom callout
-        function calloutForLandmarkAnnotation(annotation) {
-            let div = document.createElement("div");
-            div.className = "landmark";
-
-            let title = div.appendChild(document.createElement("h1"));
-            title.textContent = annotation.landmark.title;
-
-            let section = div.appendChild(document.createElement("section"));
-
-            let phone = section.appendChild(document.createElement("p"));
-            phone.className = "phone";
-            phone.innerHTML = "<strong>Phone:</strong><br />" + annotation.landmark.phone;
-
-            let hours = section.appendChild(document.createElement("p"));
-            hours.className = "hours";
-            hours.innerHTML = "<strong>Hours:</strong><br />" + annotation.landmark.hours[0] + "<br />" + annotation.landmark.hours[1];
-
-            // let link = section.appendChild(document.createElement("p"));
-            // link.className = "homepage";
-            // let a = link.appendChild(document.createElement("a"));
-            // a.href = annotation.landmark.url;
-            // a.textContent = "Website";
-
-            return div;
-        }
-
-        // CODE TO SEARCH FOR LOCATIONS
-        // let rose = new mapkit.Geocoder({
-        //     // getsUserLocation: true
-        // });;
-
-        // // lookup location and return place object
-        // rose.lookup("CS Design Studios", function (data, err) {
-        //     console.log(data, err);
-        // });
-
     </script>
 </body>
 
