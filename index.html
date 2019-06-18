@@ -14,53 +14,28 @@
 
         a:link,
         a:visited {
-            color: red;
+            color: darkred;
             outline: none;
             text-decoration: none;
         }
 
         .landmark {
-            width: 250px;
-            padding: 7px 0 0 0;
-            background: rgba(247, 247, 247, 0.8);
+            width: auto;
+            background: transparent;
             border-radius: 5px;
-            box-shadow: 10px 10px 50px rgba(0, 0, 0, 0.29);
             font-family: Helvetica, Arial, sans-serif;
-            -webkit-transform-origin: 0 10px;
-            transform-origin: 0 10px;
+            -webkit-transform-origin: 0px;
+            transform-origin: 0px;
         }
 
-        .landmark h1 {
+        .landmark h3 {
             margin-top: 0;
-            padding: 5px 15px;
-            background: red;
-            color: rgba(255, 255, 255, 0.9);
+            padding: 5px;
+            background: darkred;
+            color: lightgrey;
             font-size: 16px;
-            font-weight: 300;
+            font-weight: 700;
         }
-
-        .landmark section {
-            padding: 0 15px 5px;
-            font-size: 14px;
-        }
-
-        .landmark section p {
-            margin: 5px 0;
-        }
-
-        /* Add only if marker lines up to description title */
-        /* .landmark:after {
-            content: "";
-            position: absolute;
-            top: 7px;
-            left: -13px;
-            width: 0;
-            height: 0;
-            margin-bottom: -13px;
-            border-right: 13px solid red;
-            border-top: 13px solid rgba(0, 0, 0, 0);
-            border-bottom: 13px solid rgba(0, 0, 0, 0);
-        } */
 
         @-webkit-keyframes scale-and-fadein {
             0% {
@@ -102,45 +77,250 @@
         });
 
         // location data
-        let schools = [{
-                coordinate: new mapkit.Coordinate(32.1937708, -110.8575854),
-                title: "Canyon Rose Academy",
-                phone: "520.797.4884 OPT 4",
-                hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
+        let locations = [{
+                coordinate: new mapkit.Coordinate(33.93911, 67.709953),
+                title: "Afghanistan"
             },
             {
-                coordinate: new mapkit.Coordinate(32.25988731530194, -110.80017898366019),
-                title: "Canyon Rose Academy East",
-                phone: "520.797.4884 OPT 7",
-                hours: ["Mon-Thu: 7am-8pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
+                coordinate: new mapkit.Coordinate(12.52111, -69.968338),
+                title: "Aruba"
             },
             {
-                coordinate: new mapkit.Coordinate(32.265644073486, -110.976570129395),
-                title: "Desert Rose Academy",
-                phone: "520.797.4884 OPT 3",
-                hours: ["Mon-Thu: 7am-8pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
+                coordinate: new mapkit.Coordinate(-25.274398, 133.775136),
+                title: "Australia"
             },
             {
-                coordinate: new mapkit.Coordinate(32.324493408203, -111.043563842773),
-                title: "Mountain Rose Academy",
-                phone: "520.797.4884 OPT 2",
-                hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
+                coordinate: new mapkit.Coordinate(40.143105, 47.576927),
+                title: "Azerbaijan"
             },
             {
-                coordinate: new mapkit.Coordinate(32.161285400391, -111.002098083496),
-                title: "Pima Rose Academy",
-                phone: "520.797.4884 OPT 5",
-                hours: ["Mon-Thu: 7am-10pm", "Fri: 8am-4:30pm"],
-                url: "https://www.go2rose.com/"
+                coordinate: new mapkit.Coordinate(25.930414, 50.637772),
+                title: "Bahrain"
+            },
+            {
+                coordinate: new mapkit.Coordinate(50.503887, 4.469936),
+                title: "Belgium"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-16.290154, -63.588653),
+                title: "Bolivia"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-14.235004, -51.92528),
+                title: "Brazil"
+            },
+            {
+                coordinate: new mapkit.Coordinate(56.130366, -106.346771),
+                title: "Canada"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-35.675147, -71.542969),
+                title: "Chile"
+            },
+            {
+                coordinate: new mapkit.Coordinate(35.86166, 104.195397),
+                title: "China"
+            },
+            {
+                coordinate: new mapkit.Coordinate(4.570868, -74.297333),
+                title: "Colombia"
+            },
+            {
+                coordinate: new mapkit.Coordinate(9.748917, -83.753428),
+                title: "Costa Rica"
+            },
+            {
+                coordinate: new mapkit.Coordinate(35.126413, 33.429859),
+                title: "Cyprus"
+            },
+            {
+                coordinate: new mapkit.Coordinate(56.26392, 9.501785),
+                title: "Denmark"
+            },
+            {
+                coordinate: new mapkit.Coordinate(26.820553, 30.802498),
+                title: "Egypt"
+            },
+            {
+                coordinate: new mapkit.Coordinate(46.227638, 2.213749),
+                title: "France"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-17.679742, -149.406843),
+                title: "French Polynesia"
+            },
+            {
+                coordinate: new mapkit.Coordinate(13.443182, -15.310139),
+                title: "Gambia"
+            },
+            {
+                coordinate: new mapkit.Coordinate(51.165691, 10.451526),
+                title: "Germany"
+            },
+            {
+                coordinate: new mapkit.Coordinate(13.444304, 144.793731),
+                title: "Guam"
+            },
+            {
+                coordinate: new mapkit.Coordinate(22.396428, 114.109497),
+                title: "Hong Kong"
+            },
+            {
+                coordinate: new mapkit.Coordinate(20.593684, 78.96288),
+                title: "India"
+            },
+            {
+                coordinate: new mapkit.Coordinate(33.223191, 43.679291),
+                title: "Iraq"
+            },
+            {
+                coordinate: new mapkit.Coordinate(31.046051, 34.851612),
+                title: "Israel"
+            },
+            {
+                coordinate: new mapkit.Coordinate(41.87194, 12.56738),
+                title: "Italy"
+            },
+            {
+                coordinate: new mapkit.Coordinate(36.204824, 138.252924),
+                title: "Japan"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-0.023559, 37.906193),
+                title: "Kenya"
+            },
+            {
+                coordinate: new mapkit.Coordinate(29.31166, 47.481766),
+                title: "Kuwait"
+            },
+            {
+                coordinate: new mapkit.Coordinate(33.854721, 35.862285),
+                title: "Lebanon"
+            },
+            {
+                coordinate: new mapkit.Coordinate(55.169438, 23.881275),
+                title: "Lithuania"
+            },
+            {
+                coordinate: new mapkit.Coordinate(7.131474, 171.184478),
+                title: "Marshall Islands"
+            },
+            {
+                coordinate: new mapkit.Coordinate(23.634501, -102.552784),
+                title: "Mexico"
+            },
+            {
+                coordinate: new mapkit.Coordinate(52.132633, 5.291266),
+                title: "Netherlands"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-40.900557, 174.885971),
+                title: "New Zealand"
+            },
+            {
+                coordinate: new mapkit.Coordinate(12.865416, -85.207229),
+                title: "Nicaragua"
+            },
+            {
+                coordinate: new mapkit.Coordinate(9.081999, 8.675277),
+                title: "Nigeria"
+            },
+            {
+                coordinate: new mapkit.Coordinate(60.472024, 8.468946),
+                title: "Norway"
+            },
+            {
+                coordinate: new mapkit.Coordinate(30.375321, 69.345116),
+                title: "Pakistan"
+            },
+            {
+                coordinate: new mapkit.Coordinate(12.879721, 121.774017),
+                title: "Philippines"
+            },
+            {
+                coordinate: new mapkit.Coordinate(51.919438, 19.145136),
+                title: "Poland"
+            },
+            {
+                coordinate: new mapkit.Coordinate(39.399872, -8.224454),
+                title: "Portugal"
+            },
+            {
+                coordinate: new mapkit.Coordinate(18.220833, -66.590149),
+                title: "Puerto Rico"
+            },
+            {
+                coordinate: new mapkit.Coordinate(45.943161, 24.96676),
+                title: "Romania"
+            },
+            {
+                coordinate: new mapkit.Coordinate(61.52401, 105.318756),
+                title: "Russia"
+            },
+            {
+                coordinate: new mapkit.Coordinate(44.016521, 21.005859),
+                title: "Serbia"
+            },
+            {
+                coordinate: new mapkit.Coordinate(46.151241, 14.995463),
+                title: "Slovenia"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-30.559482, 22.937506),
+                title: "South Africa"
+            },
+            {
+                coordinate: new mapkit.Coordinate(35.907757, 127.766922),
+                title: "South Korea"
+            },
+            {
+                coordinate: new mapkit.Coordinate(40.463667, -3.74922),
+                title: "Spain"
+            },
+            {
+                coordinate: new mapkit.Coordinate(7.873054, 80.771797),
+                title: "Sri Lanka"
+            },
+            {
+                coordinate: new mapkit.Coordinate(60.128161, 18.643501),
+                title: "Sweden"
+            },
+            {
+                coordinate: new mapkit.Coordinate(46.818188, 8.227512),
+                title: "Switzerland"
+            },
+            {
+                coordinate: new mapkit.Coordinate(23.69781, 120.960515),
+                title: "Taiwan"
+            },
+            {
+                coordinate: new mapkit.Coordinate(15.870032, 100.992541),
+                title: "Thailand"
+            },
+            {
+                coordinate: new mapkit.Coordinate(10.691803, -61.222503),
+                title: "Trinidad and Tobago"
+            },
+            {
+                coordinate: new mapkit.Coordinate(38.963745, 35.243322),
+                title: "Turkey"
+            },
+            {
+                coordinate: new mapkit.Coordinate(55.378051, -3.435973),
+                title: "United Kingdom"
+            },
+            {
+                coordinate: new mapkit.Coordinate(37.09024, -95.712891),
+                title: "United States"
+            },
+            {
+                coordinate: new mapkit.Coordinate(-13.133897, 27.849332),
+                title: "Zambia"
             }
         ];
 
         // Landmark annotation callout delegate
-        let CALLOUT_OFFSET = new DOMPoint(-148, -78);
+        let CALLOUT_OFFSET = new DOMPoint(0, 0);
         let landmarkAnnotationCallout = {
             calloutElementForAnnotation: function (annotation) {
                 return calloutForLandmarkAnnotation(annotation);
@@ -155,20 +335,24 @@
             }
         };
 
-        // schools annotations
-        let annotations = schools.map(function (landmark) {
+        // locations annotations
+        let annotations = locations.map(function (landmark) {
             // make marker
             let annotation = new mapkit.MarkerAnnotation(landmark.coordinate);
             // marker attr
             annotation.callout = landmarkAnnotationCallout;
-            annotation.color = "red";
-            annotation.glyphText = " 🎓";
+            annotation.color = "lightgrey";
+            annotation.glyphText = "🧬";
             annotation.landmark = landmark;
             return annotation;
         });
 
+
         // renders map
-        let map = new mapkit.Map("map");
+        let map = new mapkit.Map("map", {
+            mapType: mapkit.Map.MapTypes.Hybrid,
+            colorScheme: mapkit.Map.ColorSchemes.Dark
+        });
 
         map.showItems(annotations);
 
@@ -176,39 +360,10 @@
         function calloutForLandmarkAnnotation(annotation) {
             let div = document.createElement("div");
             div.className = "landmark";
-
-            let title = div.appendChild(document.createElement("h1"));
+            let title = div.appendChild(document.createElement("h3"));
             title.textContent = annotation.landmark.title;
-
-            let section = div.appendChild(document.createElement("section"));
-
-            let phone = section.appendChild(document.createElement("p"));
-            phone.className = "phone";
-            phone.innerHTML = "<strong>Phone:</strong><br />" + annotation.landmark.phone;
-
-            let hours = section.appendChild(document.createElement("p"));
-            hours.className = "hours";
-            hours.innerHTML = "<strong>Hours:</strong><br />" + annotation.landmark.hours[0] + "<br />" +
-                annotation.landmark.hours[1];
-
-            // let link = section.appendChild(document.createElement("p"));
-            // link.className = "homepage";
-            // let a = link.appendChild(document.createElement("a"));
-            // a.href = annotation.landmark.url;
-            // a.textContent = "Website";
-
             return div;
         }
-
-        // CODE TO SEARCH FOR LOCATIONS
-        // let rose = new mapkit.Geocoder({
-        //     // getsUserLocation: true
-        // });;
-
-        // // lookup location and return place object
-        // rose.lookup("CS Design Studios", function (data, err) {
-        //     console.log(data, err);
-        // });
     </script>
 </body>
 
